@@ -18,3 +18,6 @@ and linker working happily. If installed properly, running `make` will assemble,
 Successfully created a bootloader and called a very basic kernel which simply outputs text using a print() 
 function I created. Major credit to [FRosner/FrOS](https://github.com/FRosner/FrOS/tree/minimal-c-kernel) and his Dev 
 article for booting and calling the kernel. 
+<p align="center">
+  <img alt="Kernel - May 10th, 2021" src="https://raw.githubusercontent.com/alexsobiek/operating-system/main/kernel-may10-2021.png">
+</p>
