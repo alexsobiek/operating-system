@@ -34,30 +34,30 @@ kernel:
 gdt_start:
     dq 0x0
 
-; code segment descriptor
-gdt_code:
-    dw 0xffff    ; segment length, bits 0-15
-    dw 0x0       ; segment base, bits 0-15
-    db 0x0       ; segment base, bits 16-23
-    db 10011010b ; flags (8 bits)
-    db 11001111b ; flags (4 bits) + segment length, bits 16-19
-    db 0x0       ; segment base, bits 24-31
 
-; data segment descriptor
-gdt_data:
-    dw 0xffff    ; segment length, bits 0-15
-    dw 0x0       ; segment base, bits 0-15
-    db 0x0       ; segment base, bits 16-23
-    db 10010010b ; flags (8 bits)
-    db 11001111b ; flags (4 bits) + segment length, bits 16-19
-    db 0x0       ; segment base, bits 24-31
+gdt_code:                               ; code segment descriptor
+    dw 0xffff                           ; segment length, bits 0-15
+    dw 0x0                              ; segment base, bits 0-15
+    db 0x0                              ; segment base, bits 16-23
+    db 10011010b                        ; flags (8 bits)
+    db 11001111b                        ; flags (4 bits) + segment length, bits 16-19
+    db 0x0                              ; segment base, bits 24-31
+
+
+gdt_data:                               ; data segment descriptor
+    dw 0xffff                           ; segment length, bits 0-15
+    dw 0x0                              ; segment base, bits 0-15
+    db 0x0                              ; segment base, bits 16-23
+    db 10010010b                        ; flags (8 bits)
+    db 11001111b                        ; flags (4 bits) + segment length, bits 16-19
+    db 0x0                              ; segment base, bits 24-31
 
 gdt_end:
 
 ; GDT descriptor
 gdt_descriptor:
-    dw gdt_end - gdt_start - 1 ; size (16 bit)
-    dd gdt_start ; address (32 bit)
+    dw gdt_end - gdt_start - 1           ; size (16 bit)
+    dd gdt_start                         ; address (32 bit)
 
 CODE_SEG equ gdt_code - gdt_start
 DATA_SEG equ gdt_data - gdt_start
@@ -68,12 +68,12 @@ DATA_SEG equ gdt_data - gdt_start
 
 [bits 16]
 switch_to_32bit:
-    cli                     ; Disable Interrupts
-    lgdt [gdt_descriptor]   ; Load GDT descriptor
+    cli                                 ; Disable Interrupts
+    lgdt [gdt_descriptor]               ; Load GDT descriptor
     mov eax, cr0
-    or eax, 0x1             ; Enable protected mode
+    or eax, 0x1                         ; Enable protected mode
     mov cr0, eax
-    jmp CODE_SEG:init_32bit ; Jump  to init_32bit
+    jmp CODE_SEG:init_32bit             ; Jump  to init_32bit
 
 [bits 32]
 init_32bit:
@@ -84,7 +84,7 @@ init_32bit:
     mov fs, ax
     mov gs, ax
 
-    mov ebp, 0x90000        ; Setup stack
+    mov ebp, 0x90000                    ; Setup stack
     mov esp, ebp
 
     call BEGIN_32BIT
@@ -103,22 +103,22 @@ disk_load:
     pusha
     push dx
 
-    mov ah, 0x02    ; read mode
-    mov al, dh      ; read dh number of sectors
-    mov cl, 0x02    ; start from sector 2
-                    ; (as sector 1 is our boot sector)
-    mov ch, 0x00    ; cylinder 0
-    mov dh, 0x00    ; head 0
+    mov ah, 0x02                        ; read mode
+    mov al, dh                          ; read dh number of sectors
+    mov cl, 0x02                        ; start from sector 2
+                                        ; (as sector 1 is our boot sector)
+    mov ch, 0x00                        ; cylinder 0
+    mov dh, 0x00                        ; head 0
 
-                    ; dl = drive number is set as input to disk_load
-                    ; es:bx = buffer pointer is set as input as well
+                                        ; dl = drive number is set as input to disk_load
+                                        ; es:bx = buffer pointer is set as input as well
 
-    int 0x13        ; BIOS interrupt
-    jc disk_error   ; check carry bit for error
+    int 0x13                            ; BIOS interrupt
+    jc disk_error                       ; check carry bit for error
 
-    pop dx          ; get back original number of sectors to read
-    cmp al, dh      ; BIOS sets 'al' to the # of sectors actually read
-                    ; compare it to 'dh' and error out if they are not equal
+    pop dx                              ; get back original number of sectors to read
+    cmp al, dh                          ; BIOS sets 'al' to the # of sectors actually read
+                                        ; compare it to 'dh' and error out if they are not equal
 
     jne sectors_error
     popa
