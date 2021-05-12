@@ -48,7 +48,7 @@ uint16 makeVGAChar(unsigned char c, uint8 foreground, uint8 background) {
  * @param background VGA Color
  */
 void clearVGABuffer(uint16 **buff, uint8 foreground, uint8 background) {
-    for (uint32 i = 0; i < BUFFER_SIZE; i++) (*buff)[i] = makeVGAChar('\0', foreground, background);
+    for (uint32 i = 0; i < BUFFER_SIZE; i++) (*buff)[i] = makeVGAChar(0x0, foreground, background);
     VGAPointer = 0;
     VGAIndex = 1;
 }
