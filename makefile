@@ -37,13 +37,14 @@ ${KERNEL_BUILD}/kernel_entry.o: $(KERNEL_DIR)/kernel.asm
 	nasm $< -f elf -o $@
 
 $(KERNEL_OBJECTS): $(KERNEL_FILES)
-	x86_64-elf-gcc -m32 -ffreestanding -c $< -o $@
+	x86_64-elf-gcc -g -m32 -ffreestanding -c $(KERNEL_DIR)/$(basename $(@F)).c -o $@
 
 # ====================================================================================
 # Binaries
 # ====================================================================================
 
 $(BINARY_BUILD)/kernel.bin: ${KERNEL_BUILD}/kernel_entry.o $(KERNEL_OBJECTS)
+	@echo $^
 	x86_64-elf-ld -m elf_i386 -o $@ -Ttext 0x1000 $^ --oformat binary
 
 $(BINARY_BUILD)/boot.bin: $(BOOT_DIR)/boot.asm
