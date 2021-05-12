@@ -1,4 +1,7 @@
 # include "kernel.h"
+
+uint16* vga_buffer;
+
 /**
  * Creates a character with proper VGA formatting
  * @param c Character
@@ -6,9 +9,6 @@
  * @param background VGA Color
  * @return unit16
  */
-
-uint16* vga_buffer;
-
 uint16 makeVGAChar(unsigned char c, uint8 foreground, uint8 background) {
     uint16 ax = 0;      // 16 bit video register
     uint8 ah = 0;       // 8 bit video color, first 4 are foreground, second 4 are background
