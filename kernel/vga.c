@@ -10,9 +10,9 @@ uint16* vga_buffer;
  * @return unit16
  */
 uint16 makeVGAChar(unsigned char c, uint8 foreground, uint8 background) {
-    uint16 ax = 0;      // 16 bit video register
-    uint8 ah = 0;       // 8 bit video color, first 4 are foreground, second 4 are background
-    uint8 al = 0;       // Character
+    uint16 ax;      // 16 bit video register
+    uint8 ah;       // 8 bit video color, first 4 are foreground, second 4 are background
+    uint8 al;       // Character
 
     ah = background;
     ah <<= 4;
@@ -32,7 +32,7 @@ uint16 makeVGAChar(unsigned char c, uint8 foreground, uint8 background) {
  * @param background VGA Color
  */
 void clearVGABuffer(uint16 **buffer, uint8 foreground, uint8 background) {
-    for (uint32 i = 0; i < BUFFER_SIZE; i++) (*buffer)[i] = makeVGAChar(' ', foreground, background);
+    for (uint32 i = 0; i < BUFFER_SIZE; i++) (*buffer)[i] = makeVGAChar('\0', foreground, background);
 }
 
 /**
@@ -48,6 +48,3 @@ void initVGA(uint8 foreground, uint8 background) {
 void initDefaultVGA() {
     initVGA(BLACK, BRIGHT_BLUE);
 }
-
-
-
