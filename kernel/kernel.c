@@ -3,18 +3,18 @@
 // Authored by Alexander Sobiek, 2021
 //===========================================================================
 
-#include "kernel.h"
+# include "kernel.h"
+# include "../lib/stdio/stdio.h"
 
 /**
  * Kernel entry point
  * @return int
  */
 int main() {
+    setVGAColorScheme(YELLOW, BLACK);
     initDefaultVGA();
-    vga_buffer[0] = makeVGAChar('T', WHITE, BRIGHT_BLUE);
-    vga_buffer[1] = makeVGAChar('E', WHITE, BRIGHT_BLUE);
-    vga_buffer[2] = makeVGAChar('S', WHITE, BRIGHT_BLUE);
-    vga_buffer[3] = makeVGAChar('T', WHITE, BRIGHT_BLUE);
+    println("Simple Operating System");
+    println("Developed by Alex Sobiek");
+    println("May 12, 2021");
+    return 0;
 }
-
-
