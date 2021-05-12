@@ -3,8 +3,8 @@
 // Authored by Alexander Sobiek, 2021
 //===========================================================================
 
+# include "kernel.h"
 # include "../drivers/vga/vga.h"
-# include "../lib/stdio/stdio.h"
 
 /**
  * Kernel entry point
@@ -13,8 +13,6 @@
 int main() {
     setVGAColorScheme(YELLOW, BLACK);
     initDefaultVGA();
-    println("Simple Operating System");
-    println("Developed by Alex Sobiek");
-    println("May 12, 2021");
+    printMOTD();
     return 0;
 }
