@@ -1,7 +1,9 @@
 #ifndef STDIO_H
 #define STDIO_H
 
-extern void println(char* string);
+typedef unsigned char color;
+
 extern void print(char *string);
+extern void println(char* string);
 
 #endif

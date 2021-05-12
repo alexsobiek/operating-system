@@ -1,4 +1,5 @@
 # include "../../drivers/vga/vga.h"
+# include "stdio.h"
 
 /**
  * Prints a new line
@@ -34,7 +35,7 @@ void print(char *str) {
 }
 
 /**
- * Prints a new line
+ * Prints a string on a new line
  * @param str char array
  */
 void println(char *str) {
