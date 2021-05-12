@@ -3,7 +3,7 @@
 // Authored by Alexander Sobiek, 2021
 //===========================================================================
 
-# include "kernel.h"
+# include "../drivers/vga/vga.h"
 # include "../lib/stdio/stdio.h"
 
 /**

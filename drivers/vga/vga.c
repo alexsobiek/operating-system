@@ -1,4 +1,4 @@
-# include "kernel.h"
+# include "vga.h"
 
 uint16* VGABuffer;                   // VGA buffer
 
