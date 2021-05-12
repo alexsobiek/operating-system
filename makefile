@@ -6,6 +6,9 @@
 all: run
 clean:
 	$(RM) -rf build/
+rebuild:
+	$(MAKE) clean
+	$(MAKE) all
 
 # ====================================================================================
 # General Variables
