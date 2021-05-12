@@ -1,6 +1,22 @@
 # include "kernel.h"
 
-uint16* vga_buffer;
+uint16* VGABuffer;                   // VGA buffer
+
+uint32 VGAPointer;
+uint32 VGAIndex;
+
+uint8 gForeground = WHITE;          // default foreground color
+uint8 gBackground = BRIGHT_BLUE;    // default background color
+
+/**
+ * Sets the default VGA color scheme
+ * @param foreground VGA Color
+ * @param background VGA Color
+ */
+void setVGAColorScheme(uint8 foreground, uint8 background) {
+    gForeground = foreground;
+    gBackground = background;
+}
 
 /**
  * Creates a character with proper VGA formatting
@@ -31,8 +47,10 @@ uint16 makeVGAChar(unsigned char c, uint8 foreground, uint8 background) {
  * @param foreground VGA Color
  * @param background VGA Color
  */
-void clearVGABuffer(uint16 **buffer, uint8 foreground, uint8 background) {
-    for (uint32 i = 0; i < BUFFER_SIZE; i++) (*buffer)[i] = makeVGAChar('\0', foreground, background);
+void clearVGABuffer(uint16 **buff, uint8 foreground, uint8 background) {
+    for (uint32 i = 0; i < BUFFER_SIZE; i++) (*buff)[i] = makeVGAChar('\0', foreground, background);
+    VGAPointer = 0;
+    VGAIndex = 1;
 }
 
 /**
@@ -41,10 +59,10 @@ void clearVGABuffer(uint16 **buffer, uint8 foreground, uint8 background) {
  * @param background VGA Color
  */
 void initVGA(uint8 foreground, uint8 background) {
-    vga_buffer = (uint16*)VGA_ADDRESS;
-    clearVGABuffer(&vga_buffer, foreground, background);
+    VGABuffer = (uint16*)VGA_ADDRESS;
+    clearVGABuffer(&VGABuffer, foreground, background);
 }
 
 void initDefaultVGA() {
-    initVGA(BLACK, BRIGHT_BLUE);
+    initVGA(gForeground, gBackground);
 }

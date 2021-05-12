@@ -8,8 +8,6 @@ typedef unsigned int uint32;
 #define VGA_ADDRESS 0xB8000
 #define BUFFER_SIZE 2200
 
-
-
 enum VGA_COLOR {
     BLACK,
     BLUE,
@@ -29,9 +27,18 @@ enum VGA_COLOR {
     WHITE
 };
 
-extern uint16* vga_buffer;
+// VGA Variables
+extern uint16* VGABuffer;
+extern uint8 gForeground;
+extern uint8 gBackground;
+extern uint32 VGAPointer;
+extern uint32 VGAIndex;
+
+// VGA Functions
+extern uint16 makeVGAChar(unsigned char c, uint8 foreground, uint8 background);
+extern void clearVGABuffer(uint16 **buff, uint8 foreground, uint8 background);
+extern void setVGAColorScheme(uint8 foreground, uint8 background);
 extern void initVGA(uint8 foreground, uint8 background);
 extern void initDefaultVGA();
-extern uint16 makeVGAChar(unsigned char c, uint8 foreground, uint8 background);
 
 #endif
