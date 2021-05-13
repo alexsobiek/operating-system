@@ -11,7 +11,7 @@
  * @return int
  */
 int main() {
-    setVGAColorScheme(YELLOW, BLACK);
+    setVGAColorScheme(GREY, BLUE);
     initDefaultVGA();
     printMOTD();
     return 0;
