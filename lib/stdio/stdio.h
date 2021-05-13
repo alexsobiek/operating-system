@@ -1,9 +1,9 @@
 #ifndef STDIO_H
 #define STDIO_H
 
-typedef unsigned char color;
+#include "../string/string.h"
 
-extern void print(char *string);
-extern void println(char* string);
+extern void print(string string);
+extern void println(string string);
 
 #endif

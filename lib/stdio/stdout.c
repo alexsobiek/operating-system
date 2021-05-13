@@ -1,4 +1,5 @@
 # include "../../drivers/vga/vga.h"
+# include "../string/string.h"
 # include "stdio.h"
 
 /**
@@ -26,7 +27,8 @@ void printChar(char c) {
  * Prints a string
  * @param str char array
  */
-void print(char *str) {
+void print(string string) {
+    char* str = toCharArray(string);
     uint32 i = 0;
     while(str[i]){
         printChar(str[i]);
@@ -38,7 +40,7 @@ void print(char *str) {
  * Prints a string on a new line
  * @param str char array
  */
-void println(char *str) {
-    print(str);
+void println(string string) {
+    print(string);
     printReturn();
 }
