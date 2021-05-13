@@ -3,5 +3,6 @@
 
 extern void printMOTD();
 extern char* getKernelVersion();
+extern char* getBuildType();
 
 #endif
