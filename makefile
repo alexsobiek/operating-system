@@ -74,8 +74,8 @@ $(DRIVER_OBJECTS): $(DRIVER_FILES)
 # ====================================================================================
 
 $(LIB_OBJECTS): $(LIB_FILES)
-	mkdir -p $(@D)
-	x86_64-elf-gcc -g -m32 -ffreestanding -c $(<D)/$(basename $(@F)).c -o $@
+	mkdir -p $(BUILD_DIR)/$(subst build/,,$(*D))
+	x86_64-elf-gcc -g -m32 -ffreestanding -c $(subst build/,, $(*D))/$(basename $(@F)).c -o $@
 
 # ====================================================================================
 # Binaries
