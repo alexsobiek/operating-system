@@ -1,17 +1,20 @@
 # include "kernel.h"
 # include "../lib/stdio/stdio.h"
 
-char* getKernelVersion() {
+string getKernelVersion() {
     return "v0.0.1";
 }
-
+string getBuildType() {
+    return "Development Build (May 12, 2021)";
+}
 
 void printMOTD() {
-    println("==========================================");
+    println("==============================================");
     println("Operating System");
-    print("Running kernel version ");
+    print("Kernel Version: ");
     println(getKernelVersion());
+    print("Build Type: ");
+    println(getBuildType());
     println("Developed by Alex Sobiek");
-    println("May 12, 2021");
-    println("==========================================");
+    println("==============================================");
 }
