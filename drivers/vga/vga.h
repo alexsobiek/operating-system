@@ -1,9 +1,7 @@
 #ifndef VGA_H
 #define VGA_H
 
-typedef unsigned char uint8;
-typedef unsigned short uint16;
-typedef unsigned int uint32;
+# include "../../lib/utils/types.h"
 
 #define VGA_ADDRESS 0xB8000
 #define BUFFER_SIZE 2200
