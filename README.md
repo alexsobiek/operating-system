@@ -12,18 +12,6 @@ As my main development machine runs Mac OS, I've followed
 [ordmilko/i686-elf-tools](https://github.com/lordmilko/i686-elf-tools#mac-os-x) for Mac OS to get the cross-compiler 
 and linker working happily. If installed properly, running `make` will assemble, compile, link, and boot QEMU. 
 
-
 ## Progress
-### May 10th, 2021
-Successfully created a bootloader and called a very basic kernel which simply outputs text using a print() 
-function I created. Major credit to [FRosner/FrOS](https://github.com/FRosner/FrOS/tree/minimal-c-kernel) and his Dev 
-article for booting and calling the kernel. 
-<p align="center">
-  <img alt="Kernel - May 10th, 2021" src="https://raw.githubusercontent.com/alexsobiek/operating-system/main/docs/kernel-may10-2021.png">
-</p>
-
-### May 11th, 2021
-Successfully created basic VGA functions in the kernel and fixed the makefile to compile multiple C files properly. 
-<p align="center">
-  <img alt="Kernel - May 10th, 2021" src="https://raw.githubusercontent.com/alexsobiek/operating-system/main/docs/kernel-may11-2021.png">
-</p>
+I moved the progress to its own dedicated file so this README isn't overly crowded.
+[Click here here for the timeline](https://github.com/alexsobiek/operating-system/blob/main/docs/progress.md)
